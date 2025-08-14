@@ -1,0 +1,86 @@
+<!DOCTYPE.html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your own custom burger with a variety of ingredients.">
+    <meta name="keywords" content="burger, custom, ingredients, build your own burger">
+    <meta name="author" content="Your Name">
+    <title>Build Your Own Burger</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Build Your Own Burger</h1>
+    </header>
+    
+    <main>
+        <section id="burger-builder">
+            <h2>Choose Your Ingredients</h2>
+            <form id="burger-form">
+                <label for="bun">Bun:</label>
+                <select id="bun" name="bun">
+                    <option value="sesame">Sesame</option>
+                    <option value="whole-grain">Whole Grain</option>
+                    <option value="gluten-free">Gluten Free</option>
+                </select>
+
+                <label for="patty">Patty:</label>
+                <select id="patty" name="patty">
+                    <option value="beef">Beef</option>
+                    <option value="chicken">Chicken</option>
+                    <option value="veggie">Veggie</option>
+                </select>
+
+                <label for="toppings">Toppings:</label>
+                <div id="toppings">
+                    <input type="checkbox" id="lettuce" name="topping" value="lettuce">
+                    <label for="lettuce">Lettuce</label>
+
+                    <input type="checkbox" id="tomato" name="topping" value="tomato">
+                    <label for="tomato">Tomato</label>
+
+                    <input type="checkbox" id="onion" name="topping" value="onion">
+                    <label for="onion">Onion</label>
+
+                    <input type="checkbox" id="cheese" name="topping" value="cheese">
+                    <label for="cheese">Cheese</label>
+
+                    <input type="checkbox" id="bacon" name="topping" value="bacon">
+                    <label for="bacon">Bacon</label>
+                </div>
+
+                <button type="submit">Build My Burger</button>
+            </form>
+        </section>
+
+        <section id="burger-preview">
+            <h2>Your Burger Preview</h2>
+            <!-- Preview will be displayed here -->
+            <div id="preview-container">
+                <p>Select ingredients to see your burger preview.</p>
+            </div>
+            <script>
+                document.getElementById('burger-form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const bun = document.getElementById('bun').value;
+                    const patty = document.getElementById('patty').value;
+                    const toppings = Array.from(document.querySelectorAll('input[name="topping"]:checked'))
+                                          .map(topping => topping.value);
+                    
+                    let previewHTML = `<h3>Your Custom Burger</h3>`;
+                    previewHTML += `<p>Bun: ${bun}</p>`;
+                    previewHTML += `<p>Patty: ${patty}</p>`;
+                    previewHTML += `<p>Toppings: ${toppings.length > 0 ? toppings.join(', ') : 'None'}</p>`;
+                    
+                    document.getElementById('preview-container').innerHTML = previewHTML;
+                }); 
+            </script>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2023 Your Name. All rights reserved.
+    </footer>
+</html>
